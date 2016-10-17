@@ -1,0 +1,26 @@
+Vagrant::Config.run do |config|
+# centos64 base box is from https://cat.pdx.edu/~nibz/vagrant/centos-6.4-amd64.box
+# but basically any (functional) centos6 box should work
+# the centos6 box on vagrantbox.es was broken at time of writing
+  config.vm.define :puppet_master_1 do |puppet_master_1|
+    puppet_master_1.vm.box = "centos64"
+    puppet_master_1.vm.network :hostonly, "192.168.1.10"
+  end
+
+  config.vm.define :puppet_master_2 do |puppet_master_2|
+    puppet_master_2.vm.box = "centos64"
+    puppet_master_2.vm.network :hostonly, "192.168.1.11"
+  end
+  config.vm.define :puppet_client_1 do |puppet_client_1|
+    puppet_client_1.vm.box = "centos64"
+    puppet_client_1.vm.network :hostonly, "192.168.1.12"
+  end
+  config.vm.define :puppet_ca_1 do |puppet_ca_1|
+    puppet_ca_1.vm.box = "centos64"
+    puppet_ca_1.vm.network :hostonly, "192.168.1.13"
+  end
+  config.vm.define :puppet_ca_2 do |puppet_ca_2|
+    puppet_ca_2.vm.box = "centos64"
+    puppet_ca_2.vm.network :hostonly, "192.168.1.14"
+  end
+end
